@@ -9,8 +9,8 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
-export_file_url = 'https://drive.google.com/uc?export=download&id=1wXl_hhb6_tXUXUdRo0E19K2VMp3xKYmd'
-export_file_name = 'stage-2.pth'
+export_file_url = 'https://drive.google.com/uc?export=download&id=1-7DHBhAi0Gf58qlbBBi9xhx7Of26XZkb'
+export_file_name = 'fish-v2.pkl'
 
 classes = ['アイゴ',
   'アイナメ',
