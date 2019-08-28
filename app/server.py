@@ -73,7 +73,7 @@ async def api(request):
     prediction = learn.predict(img)
     cat = prediction[0]
     prob = max(prediction[2].numpy()).round(1) * 100
-    return JSONResponse({'cat':cat, 'prob': prob})
+    return JSONResponse({'cat':str(cat), 'prob': str(prob)})
 
 
 
