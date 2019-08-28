@@ -65,6 +65,17 @@ async def analyze(request):
     prob = max(prediction[2].numpy()) * 100
     return JSONResponse({'result':str(prob) + '% sure it is' + str(cat)})
 
+@app.route('/api', methods=['POST'])
+async def api(request):
+    img_data = await request.form()
+    img_bytes = await (img_data['file'].read())
+    img = open_image(BytesIO(img_bytes))
+    prediction = learn.predict(img)
+    cat = prediction[0]
+    prob = max(prediction[2].numpy()).round(1) * 100
+    return JSONResponse({'cat':cat, 'prob': prob})
+
+
 
 if __name__ == '__main__':
     if 'serve' in sys.argv:
