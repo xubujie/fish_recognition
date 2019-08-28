@@ -67,13 +67,14 @@ async def analyze(request):
 
 @app.route('/api', methods=['POST'])
 async def api(request):
+    threshold = 0.3
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
     prediction = learn.predict(img)
-    cat = prediction[0]
-    prob = max(prediction[2].numpy()).round(1) * 100
-    return JSONResponse({'cat':str(cat), 'prob': str(prob)})
+    cats = classes[prediction[2].numpy() >= threshold]
+    probs = prediction[2][prediction[2].numpy() >= threshold].numpy()
+    return JSONResponse({'cat':cats, 'prob': probs})
 
 
 
